@@ -16,5 +16,15 @@ TweetStream.configure do |config|
   config.oauth_token = '104524073-NWFQMPHWu4KyIVwswdx7mKDmVWattxGB7Ie5M1un'
   config.oauth_token_secret = 'NdI9T7E4eJOyX3F0Lu5vuw6OcR0TFtCjAlYje4ebEuE'
   config.auth_method = :oauth
-  config.parser   = :yajl
+  config.parser   = :json_gem
+end
+
+client = TweetStream::Client.new
+
+client.on_error do |message|
+	  puts message
+end
+
+client.track('music') do |status|
+	  puts "#{status.text}"
 end
