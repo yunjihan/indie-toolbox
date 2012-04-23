@@ -5,10 +5,7 @@
 
 require 'rubygems'
 require 'open-uri'
-# require 'nokogiri'
-require 'active_support'
 require 'json'
-require 'net/http'
 
 puts "Indie html-parser v0.1"
 
@@ -17,7 +14,15 @@ puts "Indie html-parser v0.1"
 uri_json = URI.parse('http://muzever.com/api/events/get_by_date/?option=from_now&date=2012-04-23&page=1')
 
 # JSON.parse(my_json).to_xml(:root => :my_root)
+# json_obj = JSON doc_json
 
 doc_json = JSON.parse(uri_json.read)
 
-puts doc_json
+index=1
+doc_json.each do | x |
+	puts "#{index}. x.class: #{x.class}"
+	puts "x.inspect : #{x.inspect}"
+	index+=1
+end
+
+# puts json_obj
